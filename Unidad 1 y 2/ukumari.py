@@ -7,7 +7,9 @@ def desperdicio_de_gaseosa(amigo_1:dict, amigo_2:dict, amigo_3:dict, capacidad_b
 
     s1 = reboso1 > 0 
     s2 = reboso2 > 0 
-    s3 = reboso3 > 0 
+    s3 = reboso3 > 0
+
+    print(s1, s2, s3)
 
     # Que vaso se llena primero ?
     amigo_1['vaso1'] = amigo_1['capacidad_vaso'] - amigo_1['capacidad_actual'] # 3
@@ -23,14 +25,38 @@ def desperdicio_de_gaseosa(amigo_1:dict, amigo_2:dict, amigo_3:dict, capacidad_b
             return amigo_2['nombre']
         elif amigo_3['vaso3'] == primero:
             return amigo_3['nombre']
-
+    elif s1 and s2:
+        primero = min(amigo_1['vaso1'], amigo_2['vaso2'])
+        if amigo_1['vaso1'] == primero:
+            return amigo_1['nombre']
+        elif amigo_2['vaso2'] == primero:
+            return amigo_2['nombre']
+    elif s1 and s3:
+        primero = min(amigo_1['vaso1'], amigo_3['vaso3'])
+        if amigo_1['vaso1'] == primero:
+            return amigo_1['nombre']
+        elif amigo_3['vaso3'] == primero:
+            return amigo_3['nombre']
+    elif s2 and s3:
+        primero = min(amigo_2['vaso2'], amigo_3['vaso3'])
+        if amigo_3['vaso3'] == primero:
+            return amigo_1['nombre']
+        elif amigo_2['vaso2'] == primero:
+            return amigo_2['nombre']
+    elif s1:
+        return amigo_1['nombre']
+    elif s2:
+        return amigo_2['nombre']
+    elif s3:
+        return amigo_3['nombre']
+    
 
 llena = 5.7
 
 amigo1 = {
     'nombre': 'Juan',
     'capacidad_vaso': 10,
-    'capacidad_actual': 7
+    'capacidad_actual': 3
 }
 
 amigo2 = {
