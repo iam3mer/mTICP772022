@@ -18,5 +18,13 @@ n = contadorFun(n)
 n = contadorFun(n)
 n = contadorFun(n)
 n = contadorFun(n)
-n = contadorFun(n)
-print(n)
+n = contadorFun(n) # persiste el valor de n que se calcula en la función
+#print(n)
+
+nombres = ['Cristian', 'Andrea', 'Harold', 'Samuel']
+def agregaElemento(elemento:str, lista:list)->str:
+    lista.append(elemento)
+    return lista
+
+agregaElemento('Jair', nombres)
+print(nombres)
