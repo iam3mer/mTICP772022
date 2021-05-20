@@ -25,8 +25,8 @@ dbAnimales = {
 
 def crear(db:dict={})->dict:
 
-    vertebrados = ['mamiferos', 'aves', 'peces', 'reptiles', 'anfibios']
-    invertebrados = ['poriferos', 'cnidarios', 'moluscos', 'anelidos', 'artropodos']
+    vertebrados = ['mamifero', 'ave', 'pez', 'reptil', 'anfibio']
+    invertebrados = ['porifero', 'cnidario', 'molusco', 'anelido', 'artropodo']
     alimentacion = ['herbivoro', 'carnivoro', 'omnivoro']
     reproduccion = ['oviparo', 'viviparo', 'ovoviviparo']
     
@@ -34,25 +34,30 @@ def crear(db:dict={})->dict:
 
     animal = input('Ingrese el nombre del animal: ')
     
-    print('Estructura del animal')
-    print('-1- Vertebrado')
-    print('-2- Invertebrado')
+    while True:
+        print('Estructura del animal')
+        print('-1- Vertebrado')
+        print('-2- Invertebrado')
 
-    estructura = input('Ingrese una de los opciones: ')
-
-    if estructura == '1':
-        print(vertebrados)
-        tipo = input('Ingrese la estructura del del animal de los valores presentados: ')
-    else:
-        print(invertebrados)
-        tipo = input('Ingrese la estructura del del animal de los valores presentados: ')
-    #Comprobacion
+        estructura = input('Ingrese una de los opciones: ')
+        
+        msj = 'Ingrese la estructura del del animal de los valores presentados: '
+        if estructura == '1':
+            print(vertebrados)
+            tipo = comprobacion(msj, vertebrados)
+            break
+        elif estructura == '2':
+            print(invertebrados)
+            tipo = comprobacion(msj, invertebrados)
+            break
 
     print(alimentacion)
-    seleccionAlimentacion = input('Ingrese el tipo de alimentacion de los valores presentados: ')
+    msj = 'Ingrese el tipo de alimentacion de los valores presentados: '
+    seleccionAlimentacion = comprobacion(msj, alimentacion)
 
+    msj = 'Ingrese el tipo de reproduccion de los valores presentados: '
     print(reproduccion)
-    seleccionReproduccion = input('Ingrese el tipo de reproduccion de los valores presentados: ')
+    seleccionReproduccion = comprobacion(msj, reproduccion)
 
     if estructura == '1':
         estructuraAnimal = {
@@ -80,6 +85,12 @@ def crear(db:dict={})->dict:
 
     return db
 
+def comprobacion(msj:str, lista:list)->str:
+    while True:
+        entra = input(msj)
+        for item in lista:
+            if entra == item:
+                return entra
 
 
 print(crear(dbAnimales))
