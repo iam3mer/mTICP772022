@@ -10,6 +10,7 @@ estructuraAnimales = {
     'reproduccion': ['oviparo', 'viviparo', 'ovoviviparo']
 }
 
+
 dbAnimales = {
     1: {
         'animal': 'araña',
@@ -22,6 +23,15 @@ dbAnimales = {
         'reproduccion': 'oviparo'
     }
 }
+
+
+def comprobacion(msj:str, lista:list)->str:
+    while True:
+        entra = input(msj)
+        for item in lista:
+            if entra == item:
+                return entra
+
 
 def crear(db:dict={})->dict:
 
@@ -85,12 +95,23 @@ def crear(db:dict={})->dict:
 
     return db
 
-def comprobacion(msj:str, lista:list)->str:
-    while True:
-        entra = input(msj)
-        for item in lista:
-            if entra == item:
-                return entra
+
+def consultar(db:dict={})->None:
+
+    print('Consulta de un animal x')
+    llaveAnimal = int(input('Ingrese un numero entero: '))
+
+    animalConsultado = db[llaveAnimal]
+
+    if animalConsultado['estructura']['vertebrado'] == True:
+        estructura = 'vertebrado'
+    else:
+        estructura = 'invertebrado'
+
+    print(f'El animal consultado es {animalConsultado["animal"]}')
+    print(f'Estrutura: {estructura}, {animalConsultado["estructura"]["tipo"]}')
+    print(f'El animal {animalConsultado["animal"]} es {animalConsultado["alimentacion"]}')
+    print(f'Modo de reproducción: {animalConsultado["reproduccion"]}')
 
 
-print(crear(dbAnimales))
+consultar(dbAnimales)
