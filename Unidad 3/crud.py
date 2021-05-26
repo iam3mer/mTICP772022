@@ -24,11 +24,6 @@ dbAnimales = {
     }
 }
 
-vertebrados = ['mamifero', 'ave', 'pez', 'reptil', 'anfibio']
-invertebrados = ['porifero', 'cnidario', 'molusco', 'anelido', 'artropodo']
-alimentacion = ['herbivoro', 'carnivoro', 'omnivoro']
-reproduccion = ['oviparo', 'viviparo', 'ovoviviparo']
-
 
 def comprobacion(msj:str, lista:list, tipo:str)->str:
     while True:
@@ -53,6 +48,11 @@ def comprobacionSN(msj:str):
 
 # CREAD
 def crear(db:dict={})->dict:
+
+    vertebrados = ['mamifero', 'ave', 'pez', 'reptil', 'anfibio']
+    invertebrados = ['porifero', 'cnidario', 'molusco', 'anelido', 'artropodo']
+    alimentacion = ['herbivoro', 'carnivoro', 'omnivoro']
+    reproduccion = ['oviparo', 'viviparo', 'ovoviviparo']
 
     print('Esta a pundo de añadir un animal')
 
@@ -135,6 +135,9 @@ def consultar(db:dict={})->None:
 # UPDATE
 def actualizar(db:dict)->dict:
 
+    alimentacion = ['herbivoro', 'carnivoro', 'omnivoro']
+    reproduccion = ['oviparo', 'viviparo', 'ovoviviparo']
+
     keys = list(db.keys())
 
     print('Actualizar un animal x')
@@ -153,8 +156,8 @@ def actualizar(db:dict)->dict:
         alimentacion = comprobacion(msj, alimentacion, 'str')
         db[llaveAnimal]['alimentacion'] = alimentacion
 
-    reproduccion = input('Desea modificar la reproduccion del animal? [S/s] Sí [N/n] No ')
-    if reproduccion in ['S', 's', 'si', 'SI']:
+    msj = 'Desea modificar la reproduccion del animal? [S/s] Sí [N/n] No '
+    if comprobacionSN(msj):
         print(reproduccion)
         msj = 'Ingrese la reproducción: '
         reproduccion = comprobacion(msj, reproduccion, 'str')
@@ -162,8 +165,25 @@ def actualizar(db:dict)->dict:
 
     return db
 
+# DELETE
+def eliminar(db:dict)->dict:
+
+    keys = list(db.keys())
+
+    print('Actualizar un animal x')
+    msj = 'Ingrese un numero entero: '
+    llaveAnimal = comprobacion(msj, keys, 'int')
+
+    animal = db.pop(llaveAnimal)
+
+    print(f'Se ha eliminado el animal {animal["animal"]}')
+
+
 #dbActualizada = crear(dbAnimales)
 #consultar(dbActualizada)
 
-consultar(dbAnimales)
-dbActualiza = actualizar(dbAnimales)
+#consultar(dbAnimales)
+#dbActualiza = actualizar(dbAnimales)
+#consultar(dbAnimales)
+
+eliminar(dbAnimales)
