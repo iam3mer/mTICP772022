@@ -1,22 +1,39 @@
 from datos import *
 
 # CREATE
-def agregar(llave:int, valor:dict)->dict:
-    dbAnimales[llave] = valor
+def agregar(llaveAnimal:int, infoAnimal:dict)->dict:
+    dbAnimales[llaveAnimal] = infoAnimal
+    return dbAnimales
 
 # READ
-def leer(llave:int)->dict:
-    return dbAnimales[llave]
+def leer(llaveAnimal:int)->dict:
+    return dbAnimales[llaveAnimal]
 
 # UPDATE
-def actulizar(llave:int, valor:dict)->dict:
-    dbAnimales[llave] = valor
+def actualizarValor(llaveAnimal:int, llaveSec, infoAnimal:dict)->dict:
+    dbAnimales[llaveAnimal][llaveSec] = infoAnimal
 
 # DELETE
-def elmiminar(llave:int)->dict:
-    return dbAnimales.pop(llave)
+def eliminar(llaveAnimal:int)->dict:
+    return dbAnimales.pop(llaveAnimal)
 
 # Funciones de comprobación
+
+def comprobarLlave(msj:str)->int:
+    keys = list(dbAnimales.keys())
+    listaAnimales = []
+    for key in keys:
+        animal = leer(key)
+        listaAnimales.append(animal['animal'])
+
+    print(listaAnimales)
+    llaveAnimal = comprobacion(msj, listaAnimales, 'str')
+
+    for key in keys:
+        animal = leer(key)
+        if llaveAnimal == animal['animal']:
+            return key
+
 def comprobacion(msj:str, lista:list, tipo:str)->str:
     while True:
         if tipo == 'int':
@@ -25,6 +42,7 @@ def comprobacion(msj:str, lista:list, tipo:str)->str:
                 entra = int(entra)
         elif tipo == 'str':
             entra = input(msj)
+
         for item in lista:
             if entra == item:
                 return entra

@@ -1,11 +1,11 @@
 from logica import *
 
-def menu():
+def menu(dbAnimales:dict)->None:
     while True:
         print('-----CRUD-----')
         print('--------------')
         print('-1- Agregar animal')
-        print('-2- Actualizad animal')
+        print('-2- Actualizar animal')
         print('-3- Mostrar informacion animal')
         print('-4- Eliminar')
         print('-5- Salir')
@@ -13,21 +13,18 @@ def menu():
         opcion = input('Ingrese una opcion: ')
 
         if opcion == '1':
-            crear(dbAnimales)
+            dbAnimales = crear(dbAnimales)
         elif opcion == '2':
-            crear(dbAnimales)
+            dbAnimales = actualizar(dbAnimales)
         elif opcion == '3':
-            crear(dbAnimales)
+            consultar(dbAnimales)
         elif opcion == '4':
-            crear(dbAnimales)
+            dbAnimales = eliminarAnimal(dbAnimales)
+        elif opcion == '5':
+            break
 
 # CREAD
 def crear(db:dict={})->dict:
-
-    vertebrados = ['mamifero', 'ave', 'pez', 'reptil', 'anfibio']
-    invertebrados = ['porifero', 'cnidario', 'molusco', 'anelido', 'artropodo']
-    alimentacion = ['herbivoro', 'carnivoro', 'omnivoro']
-    reproduccion = ['oviparo', 'viviparo', 'ovoviviparo']
 
     print('Esta a pundo de añadir un animal')
 
@@ -80,21 +77,20 @@ def crear(db:dict={})->dict:
 
     llave = len(db) + 1
 
-    agregar(llave, animal)
+    db = agregar(llave, animal)
 
     return db
-
+    
 
 # READ
 def consultar(db:dict={})->None:
+    
+    print('Consulta de un animal.')
 
-    keys = list(db.keys())
+    msj = 'Ingrese el nombre del animal: '
+    llaveAnimal = comprobarLlave(msj)
 
-    print('Consulta de un animal x')
-    msj = 'Ingrese un numero entero: '
-    llaveAnimal = comprobacion(msj, keys, 'int')
-
-    animalConsultado = db[llaveAnimal]
+    animalConsultado = leer(llaveAnimal)
 
     if animalConsultado['estructura']['vertebrado'] == True:
         estructura = 'vertebrado'
@@ -110,45 +106,45 @@ def consultar(db:dict={})->None:
 # UPDATE
 def actualizar(db:dict)->dict:
 
-    alimentacion = ['herbivoro', 'carnivoro', 'omnivoro']
-    reproduccion = ['oviparo', 'viviparo', 'ovoviviparo']
+    print('Actualizar un animal.')
 
-    keys = list(db.keys())
-
-    print('Actualizar un animal x')
-    msj = 'Ingrese un numero entero: '
-    llaveAnimal = comprobacion(msj, keys, 'int')
+    msj = 'Ingrese el nombre del animal: '
+    llaveAnimal = comprobarLlave(msj)
 
     msj = 'Desea modificar el nombre del animal [S/s] Sí [N/n] No '
     if comprobacionSN(msj):
         animal = input('Ingrese el nuevo nombre: ')
-        db[llaveAnimal]['animal'] = animal
+        actualizarValor(llaveAnimal, 'animal', animal)
 
     msj = 'Desea modificar la alimentación del animal? [S/s] Sí [N/n] No '
     if comprobacionSN(msj):
         print(alimentacion)
         msj = 'Ingrese la alimentación: '
         alimentacion = comprobacion(msj, alimentacion, 'str')
-        db[llaveAnimal]['alimentacion'] = alimentacion
+        actualizarValor(llaveAnimal, 'alimentacion', alimentacion)
 
     msj = 'Desea modificar la reproduccion del animal? [S/s] Sí [N/n] No '
     if comprobacionSN(msj):
         print(reproduccion)
         msj = 'Ingrese la reproducción: '
         reproduccion = comprobacion(msj, reproduccion, 'str')
-        db[llaveAnimal]['reproduccion'] = reproduccion
+        actualizarValor(llaveAnimal, 'reproduccion', reproduccion)
 
     return db
 
 # DELETE
-def eliminar(db:dict)->dict:
+def eliminarAnimal(db:dict)->dict:
 
-    keys = list(db.keys())
+    print('Eliminar un animal')
 
-    print('Actualizar un animal x')
-    msj = 'Ingrese un numero entero: '
-    llaveAnimal = comprobacion(msj, keys, 'int')
+    msj = 'Ingrese el nombre del animal: '
+    llaveAnimal = comprobarLlave(msj)
 
-    animal = db.pop(llaveAnimal)
+    animal = eliminar(llaveAnimal)
 
     print(f'Se ha eliminado el animal {animal["animal"]}')
+
+    return db
+
+
+menu(dbAnimales)
