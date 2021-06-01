@@ -211,4 +211,4 @@ for arco in arcos:
 
 # Diccionario con arcos final
 arcos.update(auxArcos)
-print(arcos)
+pp(arcos)
