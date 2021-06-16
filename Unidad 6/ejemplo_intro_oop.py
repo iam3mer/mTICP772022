@@ -23,21 +23,21 @@ def eliminar_cuenta(numCuenta: int, db:list):
             return
     print('El numero de cuenta no existe.')
 
-print('-----------------Listar Clientes-----------------')
-pp(clientes)
+# print('-----------------Listar Clientes-----------------')
+# pp(clientes)
 
-print('-----------------Mostrar Cliente-----------------')
-consulta_cliente(545635636, clientes)
-consulta_cliente(564852415, clientes)
+# print('-----------------Mostrar Cliente-----------------')
+# consulta_cliente(545635636, clientes)
+# consulta_cliente(564852415, clientes)
 
-print('----------------Elimininar Cuenta----------------')
-eliminar_cuenta(547854545, clientes)
-eliminar_cuenta(548557585, clientes)
+# print('----------------Elimininar Cuenta----------------')
+# eliminar_cuenta(547854545, clientes)
+# eliminar_cuenta(548557585, clientes)
 
-print('-----------------Listar Clientes-----------------')
-pp(clientes)
+# print('-----------------Listar Clientes-----------------')
+# pp(clientes)
 
-print()
+# print()
 
 # ORIENTADA A OBJETOS
 
