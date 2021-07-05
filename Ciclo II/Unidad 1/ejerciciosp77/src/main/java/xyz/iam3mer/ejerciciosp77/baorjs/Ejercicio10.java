@@ -12,6 +12,8 @@ public class Ejercicio10 {
         Integer M = input.nextInt();
         System.out.println("Ingrese el valor para S: ");
         Integer S = input.nextInt();
+
+        input.close();
         
         if (H < 0 || H > 23) {
             System.out.printf("La hora no es valida. %d no hace parte del dominio de H\n", H);

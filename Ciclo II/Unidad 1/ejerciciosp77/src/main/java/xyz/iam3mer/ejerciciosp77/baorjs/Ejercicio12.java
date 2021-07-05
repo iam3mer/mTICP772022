@@ -1,8 +1,5 @@
 package xyz.iam3mer.ejerciciosp77.baorjs;
 
-import java.security.ProtectionDomain;
-import java.util.Scanner;
-
 public class Ejercicio12 {
     public static void main(String[] args) {
         Integer limite = 100;
