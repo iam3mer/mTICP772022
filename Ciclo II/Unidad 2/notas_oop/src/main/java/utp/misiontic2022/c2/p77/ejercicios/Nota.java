@@ -3,9 +3,9 @@ package utp.misiontic2022.c2.p77.ejercicios;
 public class Nota {
 
     // Atributos
-    public Integer escala100;
-    public Double escala5;
-    public String escalaCualitativa;
+    private Integer escala100;
+    private Double escala5;
+    private String escalaCualitativa;
 
     // Constructores
     public Nota () {
