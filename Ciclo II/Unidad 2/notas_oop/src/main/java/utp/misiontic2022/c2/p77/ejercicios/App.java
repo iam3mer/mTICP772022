@@ -6,6 +6,7 @@ public class App
     {
         Nota nota = new Nota(4.0);
 
-        System.out.println(nota.escalaCualitativa);
+        System.out.println(nota.getEscalaCualitativa());
+        nota.mostrarEscala();
     }
 }

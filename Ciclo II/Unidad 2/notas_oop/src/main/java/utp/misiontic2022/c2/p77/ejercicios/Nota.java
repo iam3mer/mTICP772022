@@ -45,5 +45,25 @@ public class Nota {
             this.escalaCualitativa = "Excelente";
         }
     }
+
+    // Metodos
+    public void mostrarEscala () {
+        System.out.println("------EscalaNota------");
+        System.out.printf("Nota en escala 100: %d\n", getEscala100());
+        System.out.printf("Nota en escala 5: %.2f\n", getEscala5());
+        System.out.printf("Nota en escala cualitativa: %s\n", this.escalaCualitativa);
+    }
+
+    public Integer getEscala100() {
+        return escala100;
+    }
+
+    public Double getEscala5() {
+        return escala5;
+    }
+
+    public String getEscalaCualitativa() {
+        return escalaCualitativa;
+    }
     
 }
