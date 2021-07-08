@@ -58,12 +58,26 @@ public class Nota {
         return escala100;
     }
 
+    public void setEscala100(Integer escala100) {
+        this.escala100 = escala100;
+    }
+
     public Double getEscala5() {
         return escala5;
+    }
+
+    public void setEscala5(Double escala5) {
+        this.escala5 = escala5;
     }
 
     public String getEscalaCualitativa() {
         return escalaCualitativa;
     }
+
+    public void setEscalaCualitativa(String escalaCualitativa) {
+        this.escalaCualitativa = escalaCualitativa;
+    }
+
+    
     
 }
