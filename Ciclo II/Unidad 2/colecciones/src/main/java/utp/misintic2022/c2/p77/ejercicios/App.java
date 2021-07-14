@@ -1,11 +1,14 @@
 package utp.misintic2022.c2.p77.ejercicios;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -66,16 +69,29 @@ public class App
             System.out.println(entero);
         }
     }
-/*
+
     public static void conjuntos () {
-        Set<Integer> conjuntoEnteros = new HashSet<>();
+        Set<Integer> conjuntoEnteros = new LinkedHashSet<>();
 
         conjuntoEnteros.add(5);
+        conjuntoEnteros.add(78);
         conjuntoEnteros.add(6);
-        conjuntoEnteros.add(89);
-        conjuntoEnteros.add(32);
+        conjuntoEnteros.add(6);
+        conjuntoEnteros.add(45);
+
+        System.out.println(conjuntoEnteros);
+
+        System.out.println(conjuntoEnteros.size());
+        System.out.println(conjuntoEnteros.contains(5));
+        conjuntoEnteros.remove(6);
+
+        System.out.println(conjuntoEnteros);
+
+        for (Integer num: conjuntoEnteros) {
+            System.out.println(num);
+        }
     }
-*/
+
 
     public static void mapas() {
         Map<String, Object> mapa = new HashMap<>();
@@ -92,12 +108,16 @@ public class App
 
         mapa.remove("Objeto");
 
-        /*
-        var llaves = mapa.keySet();
+        Set<String> llaves = mapa.keySet();
 
-        for (mapa llave : llaves) {
-            System.out.println(mapa.get(llave));
+        for (String llave : llaves) {
+            System.out.println(llave);
         }
-        */
+
+        Collection<Object> valores = mapa.values();
+
+        for (Object valor : valores) {
+            System.out.println(valor);
+        }
     }
 }
