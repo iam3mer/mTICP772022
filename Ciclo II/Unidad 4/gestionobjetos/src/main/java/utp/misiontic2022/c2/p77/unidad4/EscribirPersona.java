@@ -4,18 +4,19 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.List;
 
 public class EscribirPersona {
-    public static void writePeople() {
+
+    public static void writePeople(String nomFile, List<Persona> people) {
         try {
-            String nomFile = "personas.data";
+            //String nomFile = "personas.data";
             FileOutputStream file = new FileOutputStream(nomFile);
             ObjectOutputStream oos = new ObjectOutputStream(file);
     
-            oos.writeObject(new Persona("Jhonatan", "Barrera", 23452342, "Pereira"));
-            oos.writeObject(new Persona("Maria", "Carvajal", 335344, "Manizales"));
-            oos.writeObject(new Persona("Harold", "Sequeda", 456787, "Bogota"));
-            oos.writeObject(new Persona("Cesar", "Moreno", 56567445, "Medellin"));
+            for (Persona persona : people) {
+                    oos.writeObject(persona);
+            }
             
             oos.close();
         } catch (FileNotFoundException e) {

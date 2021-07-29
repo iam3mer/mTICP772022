@@ -15,6 +15,11 @@ public class Persona implements Serializable {
         this.city = city;
     }
 
+    @Override
+    public String toString() {
+        return getNuip()+" "+getFirst_name()+" "+getLast_name();
+    }
+
     public String getFirst_name() {
         return first_name;
     }
