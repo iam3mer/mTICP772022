@@ -51,8 +51,21 @@ public class DBManager implements AutoCloseable {
      *         exist in the database.
      */
     public int getStock(int bookId) throws SQLException {
-        // TODO: program this method
-        return 0;
+
+        int amount = 0;
+
+        String sql = "SELECT amount FROM stock WHERE id_book = "+bookId+";";
+        
+        try (
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+        ) {
+            if (rs.next()) {
+                amount = rs.getInt("amount");
+            }
+        }
+
+        return amount;
     }
 
     /**
@@ -110,7 +123,25 @@ public class DBManager implements AutoCloseable {
      * @throws SQLException If something fails with the DB.
      */
     public boolean sellBook(int book, int units) throws SQLException {
-        // TODO: program this method
+
+        int amount = getStock(book);
+        int amountUD;
+
+        // Comprobar el suficiente stock
+        if (amount >= units) {
+            // Insertar la venta
+            try (
+                Statement stmt = connection.createStatement();
+            ) {
+                String ins = "INSERT INTO sales (sale_date,id_book,amount) VALUES (datetime('now'),"+book+","+units+");";
+                stmt.executeUpdate(ins);
+
+                amountUD = amount - units;
+                String ud = "UPDATE stock SET amount = "+amountUD+" WHERE id_book = "+book+";";
+                stmt.executeUpdate(ud);
+            }
+            return true;
+        }
         return false;
     }
 
@@ -121,7 +152,26 @@ public class DBManager implements AutoCloseable {
      * @throws SQLException If something fails with the DB.
      */
     public List<Book> listBooks() throws SQLException {
-        // TODO: program this method
-        return new ArrayList<Book>();
+        List<Book> books = new ArrayList<>();
+
+        String sql = "SELECT * FROM books;";
+
+        try (
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+        ) {
+            while (rs.next()) {
+                Book book = new Book();
+
+                book.setId(rs.getInt("id"));
+                book.setIsbn(rs.getString("isbn"));
+                book.setTitle(rs.getString("title"));
+                book.setYear(rs.getInt("year"));
+
+                books.add(book);
+            }
+        }
+
+        return books;
     }
 }
