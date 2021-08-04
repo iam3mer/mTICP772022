@@ -29,6 +29,44 @@ public class BookDao {
         return book;
     }
 
+    public Book read(String isbn) throws SQLException {
+        Book book = null;
+        String sql = "SELECT * FROM books WHERE isbn = '"+isbn+"';";
+
+        try (
+            Connection conn = JDBCUtilities.getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+        ) {
+            if (rs.next()) {
+                book = new Book();
+
+                book.setId(rs.getInt("id"));
+                book.setTitle(rs.getString("title"));
+                book.setIsbn(rs.getString("isbn"));
+                book.setYear(rs.getInt("year"));
+            }
+        } 
+        return book;
+    }
+
+    public boolean update(Book book) throws SQLException {
+        boolean update = false;
+
+        String sql = "UPDATE books SET title = '"+book.getTitle()+"', year = "+book.getYear()+" WHERE isbn = '"+book.getIsbn()+"'";
+
+        try (
+            Connection conn = JDBCUtilities.getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            int band = stmt.executeUpdate(sql);
+            if (band == 1) {
+                update = true;
+            }
+        } 
+        return update;
+    }
+
     public int validarISBN(String isbn) throws SQLException {
         ResultSet rs = null;
 
