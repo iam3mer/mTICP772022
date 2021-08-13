@@ -39,7 +39,7 @@ public class StockDao {
 
     public void update(int id_book, int amount) throws SQLException {
 
-        int amountAct = consultarStock(id_book) - amount;
+        int amountAct = consultarStock(id_book) + amount;
 
         String sql = "UPDATE stock SET amount = "+amountAct+" WHERE id_book = "+id_book+";";
 

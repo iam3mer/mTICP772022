@@ -55,22 +55,27 @@ public class Controlador {
         return book;
     }
     
-    public ArrayList<Book> findAllBooks() throws SQLException {
+    public ArrayList<Book> findAllBooks() throws SQLException{
         return bookDao.allBooks();
-    }  
+    }
+    
 
     public Book updateBook(String isbn, String title, int year) throws SQLException {
-        boolean update;
 
         Book book = new Book();
 
-        book.setTitle(title);
-        book.setIsbn(isbn);
-        book.setYear(year);
+        try {
+            book.setTitle(title);
+            book.setIsbn(isbn);
+            book.setYear(year);
 
-        update = bookDao.update(book);
-
-        return book;
+            if(bookDao.update(book)) {
+                return book;
+            }
+        } catch (Exception e) {
+        }
+        
+        return null;
     }
 
     public boolean deleteBook(String isbn) throws SQLException {
@@ -90,6 +95,17 @@ public class Controlador {
         
         return delete;
     }
+    
+    public boolean deleteBook(int idBook) throws SQLException {
+        boolean delete = false;
+            if (saleDao.validarVenta(idBook) == false) {
+                 delete = bookDao.delete(idBook);
+                 if (delete) {
+                     stockDao.delete(idBook);
+                 }
+            }
+        return delete;
+    }
 
     public void createStock(String isbn, int amount) throws SQLException {
         int id_book = readBook(isbn).getId();
@@ -104,10 +120,18 @@ public class Controlador {
 
         stockDao.save(stock);
     }
+    
+    public void updateStock(int idBook, int amount) throws SQLException {
+        stockDao.update(idBook, amount);
+    }
 
     public ArrayList<BookStock> consultarCatalogoVenta() throws SQLException {
         return bookstockDao.consultarCatalogoDisponible();
-    } 
+    }
+    
+    public ArrayList<BookStock> consultarStock() throws SQLException {
+        return bookstockDao.consultarStock();
+    }
 
     public boolean venderLibro(String isbn, int amount) throws SQLException {
         boolean venta = false;

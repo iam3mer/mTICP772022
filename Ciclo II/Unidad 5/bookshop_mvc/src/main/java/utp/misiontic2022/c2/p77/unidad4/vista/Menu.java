@@ -118,9 +118,9 @@ public class Menu {
             System.out.print("Ingrese el año de publicación: ");
             int year = Integer.valueOf(input.readLine());
 
-            boolean update = controlador.updateBook(isbn, title, year);
+            Book book = controlador.updateBook(isbn, title, year);
 
-            if (update) {
+            if (book != null) {
                 System.out.printf("El libro con isbn %s se actualizo correctamente!\n",isbn);
             } else {
                 System.out.println("No se puede realizar la actualización.");

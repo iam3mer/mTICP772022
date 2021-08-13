@@ -28,16 +28,13 @@ public class BookDao {
             pstmt.executeUpdate();
             
             try (
-                    ResultSet gK = pstmt.getGeneratedKeys()
-                    ) {
+                ResultSet gK = pstmt.getGeneratedKeys();
+                ) {
                 if (gK.next()) {
                     book.setId(gK.getInt(1));
                 }
-            } catch (Exception e) {
             }
-            
         }
-        
         return book;
     }
 
@@ -65,8 +62,7 @@ public class BookDao {
     public boolean update(Book book) throws SQLException {
         boolean update = false;
 
-        //String sql = "UPDATE books SET title = '"+book.getTitle()+"', year = "+book.getYear()+" WHERE isbn = '"+book.getIsbn()+"'";
-        String sql = "UPDATE books SET title = '"+book.getTitle()+"', year = "+book.getYear()+" WHERE id = '"+book.getId()+"'";
+        String sql = "UPDATE books SET title = '"+book.getTitle()+"', year = "+book.getYear()+" WHERE isbn = '"+book.getIsbn()+"'";
 
         try (
             Connection conn = JDBCUtilities.getConnection();
@@ -96,6 +92,23 @@ public class BookDao {
         } 
         return delete;
     }
+    
+    public boolean delete(int idBook) throws  SQLException {
+        boolean delete = false;
+        
+        String sql = "DELETE FROM books WHERE id = "+idBook+";";
+        
+        try (
+            Connection conn = JDBCUtilities.getConnection();
+            Statement stmt = conn.createStatement();
+        ){
+            int aux = stmt.executeUpdate(sql);
+            if (aux == 1) {
+                delete = true;
+            }
+        } 
+        return delete;
+    }
 
     public int validarISBN(String isbn) throws SQLException {
         ResultSet rs = null;
@@ -117,7 +130,6 @@ public class BookDao {
         }
     }
     
-    // Nuevo
     public ArrayList<Book> allBooks() throws SQLException{
         ArrayList<Book> books = new ArrayList<>();
         Book book = null;
@@ -136,11 +148,10 @@ public class BookDao {
                 book.setTitle(rs.getString("title"));
                 book.setIsbn(rs.getString("isbn"));
                 book.setYear(rs.getInt("year"));
-
+                
                 books.add(book);
             }
         } 
         return books;
     }
-
 }
