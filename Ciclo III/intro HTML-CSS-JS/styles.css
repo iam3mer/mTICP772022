@@ -1,0 +1,94 @@
+/*
+            * {
+                padding: 0px;
+                margin: 0px;
+                border: 0px;
+            }
+            */
+
+            body {
+                text-align: center;
+                /*border: 1px solid black;*/
+                background: #f1ecdb;
+            }
+
+            /*
+            header, section, footer, aside, nav, article {
+                border: 1px solid black;
+            }
+            */
+
+            h1 {
+                margin: 5px;
+                font-size: 18px;
+                font-family: sans-serif;
+            }
+
+            h2 {
+                font-size: 16px;
+                font-family: sans-serif;
+            }
+
+            header {
+                /*background: #ddc685;*/
+                /*border: 1px solid red;*/
+                padding: 10px;
+            }
+
+            nav {
+                /*background: #e0d1a5;*/
+                text-align: left;
+                padding: 5px;
+                border-bottom: 1px solid black;
+            }
+
+            .menu li {
+                list-style: none;
+                padding: 5px;
+                font: bold 14px verdana;
+                display: inline-block;
+            }
+
+            section {
+                margin: 15px;
+                width: 500px;
+                float: left;
+            }
+
+            aside {
+                margin: 15px;
+                width: 100px;
+                float: left;
+            }
+
+            footer {
+                clear: both;
+                border-top: 1px solid black;
+            }
+
+            img {
+                width: 100px;
+                display: block;
+                margin: 10px auto;
+            }
+
+            .comment {
+                text-align: right;
+            }
+
+            .container-news {
+                background: #b9a263;
+                text-align: left;
+            }
+
+            .body-container {
+                background: #ddc685;
+            }
+
+            article {
+                margin: 15px;
+            }
+
+            time {
+                text-align: left;
+            }

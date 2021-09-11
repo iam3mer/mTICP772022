@@ -1,0 +1,58 @@
+/* div.item {
+    background-color: aqua;
+} */
+
+.container {
+    display: flex;
+    height: 300px;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+
+.item {
+    background: aqua;
+    padding: 5px;
+    width: 300px;
+    height: 100px;
+    color: darkblue;
+    margin: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.nav {
+    list-style: none;
+    margin: 0;
+    background: aqua;
+
+    display: flex;
+    flex-flow: row wrap;
+}
+
+li {
+    margin: 0 5px;
+}
+
+@media (max-width: 500px) {
+    .nav {
+        flex-flow: column wrap;
+        text-align: center;
+        padding: 0;
+    }
+}
+
+@media (max-width: 700px) {
+    .nav {
+        flex-flow: row wrap;
+        justify-content: flex-start;
+    }
+}
+
+/* @media (min-width: 900px) {
+    .nav {
+        flex-flow: row wrap;
+        justify-content: flex-end;
+    }
+} */

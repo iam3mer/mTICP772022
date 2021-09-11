@@ -1,0 +1,46 @@
+img {
+    width: 10%;
+}
+
+/* 
+display: grid
+grid-template-columns
+grid-template-rows
+grid-column
+grid-row
+
+propiedades
+grid genera cuadricula a nivel de bloque
+inline-grid genera cuadricula a nivel de linea
+*/
+
+.item-header {
+    grid-area: header;
+    justify-self: start;
+}
+
+.item-main {
+    grid-area: main;
+}
+
+.item-nav {
+    grid-area: sidebar;
+}
+
+.item-footer {
+    grid-area: footer;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 35% 35% 5% 25%;
+    grid-template-rows: auto;
+    column-gap: 10px;
+    row-gap: 10px;
+    grid-template-areas:
+        "header header header header"
+        "main main . sidebar"
+        "footer footer footer footer";
+    justify-items: start;
+}
+
