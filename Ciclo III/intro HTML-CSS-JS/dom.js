@@ -25,6 +25,10 @@ elementos = document.querySelectorAll('.list-group-item');
 elementos[2].style.color="#00F";
 */
 
+$(document).ready(function () {
+    $('.myNavbar').load('./navbar.html');
+  });
+
 const itemsArray = JSON.parse(localStorage.getItem('itemsArray')) || [];
 
 const render = () => {
@@ -67,8 +71,10 @@ window.onload = () => {
         const inputAdd = document.getElementById('inputItem');
         const txtItem = inputAdd.value;
         inputAdd.value = '';
-        itemsArray.push(txtItem);
-
+        if (txtItem != '') {
+            itemsArray.push(txtItem);
+        }
+        
         //localstorage
         const itemsString = JSON.stringify(itemsArray);
         localStorage.setItem('itemsArray', itemsString);
